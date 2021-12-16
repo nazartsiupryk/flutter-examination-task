@@ -20,8 +20,6 @@ class HomeScreen extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Row(
             children: [
-              // list(context, leftList),
-              // list(context, rightList)
             ],
           ),
         ),
@@ -30,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         onPressed: () => {},
         tooltip: 'Increment',
         child: new Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ), 
     );
   }
   Widget list(BuildContext context, dynamic list) {
