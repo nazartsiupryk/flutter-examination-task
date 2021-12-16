@@ -12,8 +12,8 @@ class Exam extends StatefulWidget {
 class _ExamState extends State<Exam> {
   Random random = Random();
 
-  late List<Map<String, dynamic>> arr1 = [];
-  late List<Map<String, dynamic>> arr2 = [];
+  late List<Map<String, dynamic>> firstlist = [];
+  late List<Map<String, dynamic>> secondlist = [];
 
   bool toMuchRed = false;
 
@@ -31,13 +31,13 @@ class _ExamState extends State<Exam> {
     }
 
     setState(() {
-      arr1 = a1;
-      arr2 = a2;
+      firstlist = a1;
+      secondlist = a2;
     });
   }
 
   randomMoving() {
-    final allElements = [...arr1, ...arr2];
+    final allElements = [...firstlist, ...arr2];
 
     final allRed =
         allElements.where((item) => item['color'] == Colors.red).toList();
@@ -50,12 +50,12 @@ class _ExamState extends State<Exam> {
     if (!onlyRed) {
       int num = random.nextInt(2) + 0;
 
-      if (arr1.isEmpty) num = 2;
+      if (firstlist.isEmpty) num = 2;
 
-      if (arr2.isEmpty) num = 1;
+      if (secondlist.isEmpty) num = 1;
 
       final bool isArr1 = num == 1;
-      final selectedArr = isArr1 ? arr1 : arr2;
+      final selectedArr = isArr1 ? firstlist : secondlist;
 
       int num2 = random.nextInt(selectedArr.length) + 0;
 
@@ -66,8 +66,8 @@ class _ExamState extends State<Exam> {
           selectedArr[num2]['color'] = Colors.grey;
         }
         setState(() {
-          arr2.add(selectedArr[num2]);
-          arr1.removeAt(num2);
+          secondlist.add(selectedArr[num2]);
+          firstlist.removeAt(num2);
         });
       } else {
         setState(() {
@@ -77,8 +77,8 @@ class _ExamState extends State<Exam> {
             selectedArr[num2]['color'] = Colors.grey;
           }
 
-          arr1.add(selectedArr[num2]);
-          arr2.removeAt(num2);
+          firstlist.add(selectedArr[num2]);
+          secondlist.removeAt(num2);
         });
       }
     } else {
@@ -87,14 +87,14 @@ class _ExamState extends State<Exam> {
       allRed[num2]['color'] = Colors.grey;
       if (allRed[num2]['text'].contains('Right')) {
         setState(() {
-          arr2.add(allRed[num2]);
-          arr1.removeWhere(
+          secondlist.add(allRed[num2]);
+          firstlist.removeWhere(
               (element) => element['text'] == allRed[num2]['text']);
         });
       } else {
         setState(() {
-          arr1.add(allRed[num2]);
-          arr2.removeWhere(
+          firstlist.add(allRed[num2]);
+          secondlist.removeWhere(
               (element) => element['text'] == allRed[num2]['text']);
         });
       }
@@ -107,8 +107,8 @@ class _ExamState extends State<Exam> {
 
   @override
   Widget build(BuildContext context) {
-    print(arr1);
-    print(arr2);
+    print(firstlist);
+    print(secondlist);
     return (Scaffold(
       body: SafeArea(
           child: Container(
@@ -117,14 +117,13 @@ class _ExamState extends State<Exam> {
             Row(
               children: <Widget>[
                 ListWidget(
-                  // ignore: prefer_const_literals_to_create_immutables
-                  list: arr1,
+                  list: firstlist,
                 ),
                 SizedBox(
                   width: 50,
                 ),
                 ListWidget(
-                  list: arr2,
+                  list: secondlist,
                 )
               ],
             ),
