@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: () => {},
-        tooltip: 'Increment',
+        tooltip: 'Increment value',
         child: new Icon(Icons.add),
       ), 
     );
