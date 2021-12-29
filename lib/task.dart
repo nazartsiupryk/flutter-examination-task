@@ -37,7 +37,7 @@ class _ExamState extends State<Exam> {
   }
 
   randomMoving() {
-    final allElements = [...firstlist, ...arr2];
+    final allElements = [...firstlist, ...secondlist];
 
     final allRed =
         allElements.where((item) => item['color'] == Colors.red).toList();
@@ -178,7 +178,7 @@ class ListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 100,
-      height: 20,
+      height: 45,
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(color: data['color']),
       child: Text(
