@@ -177,7 +177,7 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 75,
+      width: 85,
       height: 45,
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(color: data['color']),
